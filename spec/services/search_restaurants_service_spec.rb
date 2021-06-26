@@ -32,4 +32,22 @@ describe SearchRestaurantsService do
       expect(subject.sample[:name].downcase).to include(name.downcase)
     end
   end
+
+  context 'when cuisine is passed as argument' do
+    let(:cuisine) { 'korean' }
+    let(:cuisine_id) { 8 }
+
+    it 'returns only restaurants with the name and cuisine given' do
+      expect(subject.sample[:name].downcase).to include(name.downcase)
+      expect(subject.sample[:cuisine_id]).to eq(cuisine_id)
+    end
+
+    context 'when no name is passed' do
+      let(:name) { nil }
+
+      it 'returns only restaurants with the given cuisine' do
+        expect(subject.sample[:cuisine_id]).to eq(cuisine_id)
+      end
+    end
+  end
 end
