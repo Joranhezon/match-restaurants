@@ -55,6 +55,18 @@ describe SearchRestaurantsService do
         expect(cuisine_ids).to all(eq(cuisine_id))
       end
     end
+
+    context 'when partial cuisine name is passed' do
+      let(:cuisine) { 'rEa' }
+
+      it 'returns only restaurants with the name and cuisine given' do
+        names = subject.map { |restaurant| restaurant[:name].downcase }
+        cuisine_ids = subject.map { |restaurant| restaurant[:cuisine_id] }
+
+        expect(cuisine_ids).to all(eq(cuisine_id))
+        expect(names).to all(include(name.downcase))
+      end
+    end
   end
 
   context 'when distance is passed as argument' do

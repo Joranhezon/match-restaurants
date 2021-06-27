@@ -8,7 +8,7 @@ class SearchRestaurantsService
   def call(name, customer_rating, distance, price, cuisine)
     restaurants = ExtractRestaurantDataService.new.call(RESTAURANT_CSV_PATH)
 
-    restaurants = search_partial_string(:name, name, restaurants) if name.present?
+    restaurants = search_name(name, restaurants) if name.present?
     restaurants = search_cuisine(cuisine, restaurants) if cuisine.present?
     restaurants = search_within_distance(distance, restaurants) if distance.present?
     restaurants = search_within_rating(customer_rating, restaurants) if customer_rating.present?
@@ -19,9 +19,9 @@ class SearchRestaurantsService
 
   private
 
-  def search_partial_string(key, content, data)
+  def search_name(name, data)
     data.select do |item|
-      item[key].downcase.include? content.downcase
+      item[:name].downcase.include? name.downcase
     end
   end
 
@@ -35,7 +35,7 @@ class SearchRestaurantsService
 
   def get_cuisine_id(cuisine)
     cuisine = CUISINE_DATA.select do |item|
-      item[:name].downcase == cuisine.downcase
+      item[:name].downcase.include? cuisine.downcase
     end
 
     cuisine.first[:id]
