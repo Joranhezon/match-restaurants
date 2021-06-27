@@ -17,7 +17,7 @@ class SearchRestaurantsService
     restaurants = search_within_rating(customer_rating, restaurants) if customer_rating.present?
     restaurants = search_within_price(price, restaurants) if price.present?
 
-    restaurants
+    replace_cuisine_id_with_name(restaurants) unless restaurants.blank?
   end
 
   private
@@ -48,6 +48,14 @@ class SearchRestaurantsService
     cuisine.first[:id]
   end
 
+  def get_cuisine_name(cuisine_id)
+    cuisine = CUISINE_DATA.select do |item|
+      item[:id] == cuisine_id
+    end
+
+    cuisine.first[:name]
+  end
+
   def search_within_distance(distance, data)
     data.select do |item|
       item[:distance] <= distance
@@ -64,5 +72,15 @@ class SearchRestaurantsService
     data.select do |item|
       item[:price] <= price
     end
+  end
+
+  def replace_cuisine_id_with_name(restaurants)
+    restaurants.map do |restaurant|
+      cuisine = get_cuisine_name(restaurant[:cuisine_id])
+      restaurant[:cuisine] = cuisine
+      restaurant.delete(:cuisine_id)
+    end
+
+    restaurants
   end
 end

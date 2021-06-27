@@ -18,7 +18,7 @@ describe SearchRestaurantsService do
     expect(subject).to all(have_key(:customer_rating))
     expect(subject).to all(have_key(:distance))
     expect(subject).to all(have_key(:price))
-    expect(subject).to all(have_key(:cuisine_id))
+    expect(subject).to all(have_key(:cuisine))
   end
 
   context 'when every argument passed is nil' do
@@ -49,9 +49,9 @@ describe SearchRestaurantsService do
 
     it 'returns only restaurants with the name and cuisine given' do
       names = subject.map { |restaurant| restaurant[:name].downcase }
-      cuisine_ids = subject.map { |restaurant| restaurant[:cuisine_id] }
+      cuisines = subject.map { |restaurant| restaurant[:cuisine].downcase }
 
-      expect(cuisine_ids).to all(eq(cuisine_id))
+      expect(cuisines).to all(include(cuisine.downcase))
       expect(names).to all(include(name.downcase))
     end
 
@@ -59,8 +59,8 @@ describe SearchRestaurantsService do
       let(:name) { nil }
 
       it 'returns only restaurants with the given cuisine' do
-        cuisine_ids = subject.map { |restaurant| restaurant[:cuisine_id] }
-        expect(cuisine_ids).to all(eq(cuisine_id))
+        cuisines = subject.map { |restaurant| restaurant[:cuisine].downcase }
+        expect(cuisines).to all(eq(cuisine))
       end
     end
 
@@ -69,9 +69,9 @@ describe SearchRestaurantsService do
 
       it 'returns only restaurants with the name and cuisine given' do
         names = subject.map { |restaurant| restaurant[:name].downcase }
-        cuisine_ids = subject.map { |restaurant| restaurant[:cuisine_id] }
+        cuisines = subject.map { |restaurant| restaurant[:cuisine].downcase }
 
-        expect(cuisine_ids).to all(eq(cuisine_id))
+        expect(cuisines).to all(include(cuisine.downcase))
         expect(names).to all(include(name.downcase))
       end
     end

@@ -9,7 +9,7 @@ describe SortRestaurantsService do
       customer_rating: 3,
       distance: 10,
       price: 15,
-      cuisine_id: 8
+      cuisine: 'Korean'
     }]
   end
 
@@ -22,7 +22,7 @@ describe SortRestaurantsService do
     expect(subject).to all(have_key(:customer_rating))
     expect(subject).to all(have_key(:distance))
     expect(subject).to all(have_key(:price))
-    expect(subject).to all(have_key(:cuisine_id))
+    expect(subject).to all(have_key(:cuisine))
   end
 
   context 'when no restaurants are passed' do
@@ -40,42 +40,42 @@ describe SortRestaurantsService do
         customer_rating: 3,
         distance: 15,
         price: 10,
-        cuisine_id: 8
+        cuisine: 'Korean'
       },
        {
          name: 'Test1',
          customer_rating: 3,
          distance: 13,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        },
        {
          name: 'Test2',
          customer_rating: 3,
          distance: 10,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        },
        {
          name: 'Test3',
          customer_rating: 3,
          distance: 12,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        },
        {
          name: 'Test4',
          customer_rating: 3,
          distance: 11,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        },
        {
          name: 'Test5',
          customer_rating: 3,
          distance: 9,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        }]
     end
 
@@ -91,28 +91,28 @@ describe SortRestaurantsService do
         customer_rating: 3,
         distance: 15,
         price: 10,
-        cuisine_id: 8
+        cuisine: 'Korean'
       },
        {
          name: 'Test1',
          customer_rating: 3,
          distance: 13,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        },
        {
          name: 'Test2',
          customer_rating: 3,
          distance: 10,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        },
        {
          name: 'Test3',
          customer_rating: 3,
          distance: 12,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        }]
     end
     let(:response) do
@@ -121,28 +121,28 @@ describe SortRestaurantsService do
         customer_rating: 3,
         distance: 10,
         price: 10,
-        cuisine_id: 8
+        cuisine: 'Korean'
       },
        {
          name: 'Test3',
          customer_rating: 3,
          distance: 12,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        },
        {
          name: 'Test1',
          customer_rating: 3,
          distance: 13,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        },
        {
          name: 'Test',
          customer_rating: 3,
          distance: 15,
          price: 10,
-         cuisine_id: 8
+         cuisine: 'Korean'
        }]
     end
 
@@ -161,28 +161,28 @@ describe SortRestaurantsService do
           customer_rating: 3,
           distance: 15,
           price: 10,
-          cuisine_id: 8
+          cuisine: 'Korean'
         },
          {
            name: 'Test1',
            customer_rating: 4,
            distance: 15,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          },
          {
            name: 'Test2',
            customer_rating: 3,
            distance: 10,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          },
          {
            name: 'Test3',
            customer_rating: 3,
            distance: 12,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          }]
       end
       let(:response) do
@@ -191,28 +191,28 @@ describe SortRestaurantsService do
           customer_rating: 3,
           distance: 10,
           price: 10,
-          cuisine_id: 8
+          cuisine: 'Korean'
         },
          {
            name: 'Test3',
            customer_rating: 3,
            distance: 12,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          },
          {
            name: 'Test1',
            customer_rating: 4,
            distance: 15,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          },
          {
            name: 'Test',
            customer_rating: 3,
            distance: 15,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          }]
       end
 
@@ -228,28 +228,28 @@ describe SortRestaurantsService do
           customer_rating: 3,
           distance: 15,
           price: 10,
-          cuisine_id: 8
+          cuisine: 'Korean'
         },
          {
            name: 'Test1',
            customer_rating: 3,
            distance: 15,
            price: 8,
-           cuisine_id: 8
+           cuisine: 'Korean'
          },
          {
            name: 'Test2',
            customer_rating: 3,
            distance: 10,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          },
          {
            name: 'Test3',
            customer_rating: 3,
            distance: 12,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          }]
       end
       let(:response) do
@@ -258,28 +258,28 @@ describe SortRestaurantsService do
           customer_rating: 3,
           distance: 10,
           price: 10,
-          cuisine_id: 8
+          cuisine: 'Korean'
         },
          {
            name: 'Test3',
            customer_rating: 3,
            distance: 12,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          },
          {
            name: 'Test1',
            customer_rating: 3,
            distance: 15,
            price: 8,
-           cuisine_id: 8
+           cuisine: 'Korean'
          },
          {
            name: 'Test',
            customer_rating: 3,
            distance: 15,
            price: 10,
-           cuisine_id: 8
+           cuisine: 'Korean'
          }]
       end
 

@@ -19,7 +19,7 @@ describe GetRestaurantTemplateService do
     expect(subject).to all(have_key(:customer_rating))
     expect(subject).to all(have_key(:distance))
     expect(subject).to all(have_key(:price))
-    expect(subject).to all(have_key(:cuisine_id))
+    expect(subject).to all(have_key(:cuisine))
   end
 
   context 'when no restaurants are found' do
