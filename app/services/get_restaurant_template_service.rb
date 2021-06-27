@@ -5,7 +5,7 @@ class GetRestaurantTemplateService
 
   class InvalidArgumentTypeError < StandardError; end
 
-  def call(name = nil, customer_rating = nil, distance = nil, price = nil, cuisine = nil)
+  def call(name: nil, customer_rating: nil, distance: nil, price: nil, cuisine: nil)
     valid_arguments?(name, customer_rating, distance, price, cuisine)
 
     restaurants = SearchRestaurantsService.new.call(name, customer_rating, distance, price, cuisine)

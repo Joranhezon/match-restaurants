@@ -9,7 +9,15 @@ describe GetRestaurantTemplateService do
   let(:price) { nil }
   let(:cuisine) { nil }
 
-  subject { described_class.new.call(name, customer_rating, distance, price, cuisine) }
+  subject do
+    described_class.new.call(
+      name: name,
+      customer_rating: customer_rating,
+      distance: distance,
+      price: price,
+      cuisine: cuisine
+    )
+  end
 
   it 'returns up to 5 restaurants with Delicious on their name' do
     expect(subject).to be_a(Array)
