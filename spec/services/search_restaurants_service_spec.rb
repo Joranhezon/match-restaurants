@@ -21,6 +21,14 @@ describe SearchRestaurantsService do
     expect(subject).to all(have_key(:cuisine_id))
   end
 
+  context 'when every argument passed is nil' do
+    let(:name) { nil }
+
+    it 'returns NoArgumentError' do
+      expect { subject }.to raise_error(SearchRestaurantsService::NoArgumentError)
+    end
+  end
+
   it 'returns only restaurants with Delicious in its name' do
     names = subject.map { |restaurant| restaurant[:name].downcase }
     expect(names).to all(include(name.downcase))

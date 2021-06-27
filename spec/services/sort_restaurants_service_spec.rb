@@ -25,6 +25,14 @@ describe SortRestaurantsService do
     expect(subject).to all(have_key(:cuisine_id))
   end
 
+  context 'when no restaurants are passed' do
+    let(:restaurants) { [] }
+
+    it 'raises NoRestaurantsToFilterError' do
+      expect { subject }.to raise_error(SortRestaurantsService::NoRestaurantsToFilterError)
+    end
+  end
+
   context 'when there are more than 5 restaurants' do
     let(:restaurants) do
       [{

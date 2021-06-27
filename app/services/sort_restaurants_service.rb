@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class SortRestaurantsService
+  class NoRestaurantsToFilterError < StandardError; end
+
   def call(restaurants)
+    raise NoRestaurantsToFilterError if restaurants.blank?
+
     restaurants = sort_by_distance(restaurants)
     restaurants = untie_sort_by_rating(restaurants)
     restaurants = untie_sort_by_price(restaurants)

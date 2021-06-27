@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 class SearchRestaurantsService
+  class NoArgumentError < StandardError; end
+
   RESTAURANT_CSV_PATH = 'docs/restaurants.csv'
   CUISINE_CSV_PATH = 'docs/cuisines.csv'
   CUISINE_DATA = ExtractRestaurantDataService.new.call(CUISINE_CSV_PATH).freeze
 
   def call(name, customer_rating, distance, price, cuisine)
-    restaurants = ExtractRestaurantDataService.new.call(RESTAURANT_CSV_PATH)
+    raise NoArgumentError unless valid_arguments?(name, customer_rating, distance, price, cuisine)
 
+    restaurants = ExtractRestaurantDataService.new.call(RESTAURANT_CSV_PATH)
     restaurants = search_name(name, restaurants) if name.present?
     restaurants = search_cuisine(cuisine, restaurants) if cuisine.present?
     restaurants = search_within_distance(distance, restaurants) if distance.present?
@@ -18,6 +21,10 @@ class SearchRestaurantsService
   end
 
   private
+
+  def valid_arguments?(name, rating, distance, price, cuisine)
+    name.present? || rating.present? || distance.present? || price.present? || cuisine.present?
+  end
 
   def search_name(name, data)
     data.select do |item|
