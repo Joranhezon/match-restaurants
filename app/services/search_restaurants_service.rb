@@ -5,13 +5,14 @@ class SearchRestaurantsService
   CUISINE_CSV_PATH = 'docs/cuisines.csv'
   CUISINE_DATA = ExtractRestaurantDataService.new.call(CUISINE_CSV_PATH).freeze
 
-  def call(name, customer_rating, distance, _price, cuisine)
+  def call(name, customer_rating, distance, price, cuisine)
     restaurants = ExtractRestaurantDataService.new.call(RESTAURANT_CSV_PATH)
 
     restaurants = search_partial_string(:name, name, restaurants) if name.present?
     restaurants = search_cuisine(cuisine, restaurants) if cuisine.present?
     restaurants = search_within_distance(distance, restaurants) if distance.present?
     restaurants = search_within_rating(customer_rating, restaurants) if customer_rating.present?
+    restaurants = search_within_price(price, restaurants) if price.present?
 
     restaurants
   end
@@ -49,6 +50,12 @@ class SearchRestaurantsService
   def search_within_rating(rating, data)
     data.select do |item|
       item[:customer_rating] >= rating
+    end
+  end
+
+  def search_within_price(price, data)
+    data.select do |item|
+      item[:price] <= price
     end
   end
 end

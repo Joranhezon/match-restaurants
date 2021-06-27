@@ -74,4 +74,13 @@ describe SearchRestaurantsService do
       expect(ratings).to all(be >= customer_rating)
     end
   end
+
+  context 'when price is passed as argument' do
+    let(:price) { 10 }
+
+    it 'return only restaurants with the given name within price' do
+      prices = subject.map { |restaurant| restaurant[:price] }
+      expect(prices).to all(be <= price)
+    end
+  end
 end
