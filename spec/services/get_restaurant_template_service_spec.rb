@@ -21,4 +21,15 @@ describe GetRestaurantTemplateService do
     expect(subject).to all(have_key(:price))
     expect(subject).to all(have_key(:cuisine_id))
   end
+
+  context 'when invalid arguments are passed' do
+    context 'when neither name nor cuisine are passed' do
+      let(:name) { nil }
+      let(:message) { 'Either name or cuisine arguments need to be passed' }
+
+      it 'returns message stating that name or cuisine need to be passed' do
+        expect(subject).to eq(message)
+      end
+    end
+  end
 end
