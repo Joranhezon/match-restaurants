@@ -22,6 +22,15 @@ describe GetRestaurantTemplateService do
     expect(subject).to all(have_key(:cuisine_id))
   end
 
+  context 'when no restaurants are found' do
+    let(:name) { 'Does not exist' }
+    let(:message) { 'No restaurants were found ):' }
+
+    it 'returns message stating that no restaurants were found' do
+      expect(subject).to eq(message)
+    end
+  end
+
   context 'when invalid arguments are passed' do
     context 'when neither name nor cuisine are passed' do
       let(:name) { nil }
