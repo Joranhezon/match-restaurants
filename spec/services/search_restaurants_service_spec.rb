@@ -65,4 +65,13 @@ describe SearchRestaurantsService do
       expect(distances).to all(be <= distance)
     end
   end
+
+  context 'when customer_rating is passed as argument' do
+    let(:customer_rating) { 3 }
+
+    it 'returns only restaurants with the given name within given customer rating' do
+      ratings = subject.map { |restaurant| restaurant[:customer_rating] }
+      expect(ratings).to all(be >= customer_rating)
+    end
+  end
 end
