@@ -40,5 +40,50 @@ describe GetRestaurantTemplateService do
         expect(subject).to eq(message)
       end
     end
+
+    context 'when name is of an invalid type' do
+      let(:name) { 123 }
+      let(:message) { 'Name must be of string type' }
+
+      it 'returns message stating that name is of invalid Argument' do
+        expect(subject).to eq(message)
+      end
+    end
+
+    context 'when customer_rating is of an invalid type' do
+      let(:customer_rating) { 'rating' }
+      let(:message) { 'Customer rating must be of int type' }
+
+      it 'returns message stating that rating is of invalid Argument' do
+        expect(subject).to eq(message)
+      end
+    end
+
+    context 'when distance is of an invalid type' do
+      let(:distance) { 'distance' }
+      let(:message) { 'Distance must be of int type' }
+
+      it 'returns message stating that distance is of invalid Argument' do
+        expect(subject).to eq(message)
+      end
+    end
+
+    context 'when price is of an invalid type' do
+      let(:price) { 'price' }
+      let(:message) { 'Price must be of int type' }
+
+      it 'returns message stating that price is of invalid Argument' do
+        expect(subject).to eq(message)
+      end
+    end
+
+    context 'when cuisine is of an invalid type' do
+      let(:cuisine) { 8 }
+      let(:message) { 'Cuisine must be of string type' }
+
+      it 'returns message stating that cuisine is of invalid Argument' do
+        expect(subject).to eq(message)
+      end
+    end
   end
 end
