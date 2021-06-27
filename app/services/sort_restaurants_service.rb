@@ -4,7 +4,8 @@ class SortRestaurantsService
   def call(restaurants)
     restaurants = sort_by_distance(restaurants)
     restaurants = untie_sort_by_rating(restaurants)
-    untie_sort_by_price(restaurants)
+    restaurants = untie_sort_by_price(restaurants)
+    select_best_matches(restaurants)
   end
 
   private
@@ -43,5 +44,11 @@ class SortRestaurantsService
   def untie_by_price?(first_restaurant, second_restaurant)
     first_restaurant[:distance] == second_restaurant[:distance] &&
       second_restaurant[:price] < first_restaurant[:price]
+  end
+
+  def select_best_matches(restaurants)
+    return restaurants if restaurants.length < 5
+
+    restaurants[0..4]
   end
 end
