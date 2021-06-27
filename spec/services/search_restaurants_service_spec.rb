@@ -23,7 +23,6 @@ describe SearchRestaurantsService do
 
   it 'returns only restaurants with Delicious in its name' do
     names = subject.map { |restaurant| restaurant[:name].downcase }
-
     expect(names).to all(include(name.downcase))
   end
 
@@ -32,7 +31,6 @@ describe SearchRestaurantsService do
 
     it 'returns only restaurants that contain IcIou in its name' do
       names = subject.map { |restaurant| restaurant[:name].downcase }
-
       expect(names).to all(include(name.downcase))
     end
   end
@@ -56,6 +54,15 @@ describe SearchRestaurantsService do
         cuisine_ids = subject.map { |restaurant| restaurant[:cuisine_id] }
         expect(cuisine_ids).to all(eq(cuisine_id))
       end
+    end
+  end
+
+  context 'when distance is passed as argument' do
+    let(:distance) { 8 }
+
+    it 'returns only restaurants with the given name within the distance' do
+      distances = subject.map { |restaurant| restaurant[:distance] }
+      expect(distances).to all(be <= distance)
     end
   end
 end
