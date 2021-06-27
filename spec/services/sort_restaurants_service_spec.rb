@@ -153,7 +153,74 @@ describe SortRestaurantsService do
          }]
       end
 
-      it 'unties and sort by customer_rating' do
+      it 'unties and sorts by customer_rating' do
+        expect(subject).to eq(response)
+      end
+    end
+
+    context 'when two restaurants are tied by distance and customer_rating' do
+      let(:restaurants) do
+        [{
+          name: 'Test',
+          customer_rating: 3,
+          distance: 15,
+          price: 10,
+          cuisine_id: 8
+        },
+         {
+           name: 'Test1',
+           customer_rating: 3,
+           distance: 15,
+           price: 8,
+           cuisine_id: 8
+         },
+         {
+           name: 'Test2',
+           customer_rating: 3,
+           distance: 10,
+           price: 10,
+           cuisine_id: 8
+         },
+         {
+           name: 'Test3',
+           customer_rating: 3,
+           distance: 12,
+           price: 10,
+           cuisine_id: 8
+         }]
+      end
+      let(:response) do
+        [{
+          name: 'Test2',
+          customer_rating: 3,
+          distance: 10,
+          price: 10,
+          cuisine_id: 8
+        },
+         {
+           name: 'Test3',
+           customer_rating: 3,
+           distance: 12,
+           price: 10,
+           cuisine_id: 8
+         },
+         {
+           name: 'Test1',
+           customer_rating: 3,
+           distance: 15,
+           price: 8,
+           cuisine_id: 8
+         },
+         {
+           name: 'Test',
+           customer_rating: 3,
+           distance: 15,
+           price: 10,
+           cuisine_id: 8
+         }]
+      end
+
+      it 'unties and sorts by price' do
         expect(subject).to eq(response)
       end
     end
