@@ -5,7 +5,7 @@ class SearchRestaurantsService
   CUISINE_CSV_PATH = 'docs/cuisines.csv'
   CUISINE_DATA = ExtractRestaurantDataService.new.call(CUISINE_CSV_PATH).freeze
 
-  def call(name, customer_rating, distance, price, cuisine)
+  def call(name, _customer_rating, _distance, _price, cuisine)
     restaurant_data = ExtractRestaurantDataService.new.call(RESTAURANT_CSV_PATH)
 
     restaurant_data = search_partial_string(:name, name, restaurant_data) if name.present?

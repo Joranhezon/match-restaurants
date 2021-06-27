@@ -11,12 +11,12 @@ describe ExtractRestaurantDataService do
 
       it 'returns restaurants data' do
         expect(subject).to be_a(Array)
-        expect(subject.sample).to be_a(Hash)
-        expect(subject.sample).to have_key(:name)
-        expect(subject.sample).to have_key(:customer_rating)
-        expect(subject.sample).to have_key(:distance)
-        expect(subject.sample).to have_key(:price)
-        expect(subject.sample).to have_key(:cuisine_id)
+        expect(subject).to all(be_a(Hash))
+        expect(subject).to all(have_key(:name))
+        expect(subject).to all(have_key(:customer_rating))
+        expect(subject).to all(have_key(:distance))
+        expect(subject).to all(have_key(:price))
+        expect(subject).to all(have_key(:cuisine_id))
       end
     end
 
@@ -25,9 +25,9 @@ describe ExtractRestaurantDataService do
 
       it 'returns restaurants data' do
         expect(subject).to be_a(Array)
-        expect(subject.sample).to be_a(Hash)
-        expect(subject.sample).to have_key(:name)
-        expect(subject.sample).to have_key(:id)
+        expect(subject).to all(be_a(Hash))
+        expect(subject).to all(have_key(:name))
+        expect(subject).to all(have_key(:id))
       end
     end
 

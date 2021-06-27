@@ -13,23 +13,27 @@ describe SearchRestaurantsService do
 
   it 'returns array of hashs' do
     expect(subject).to be_a(Array)
-    expect(subject.sample).to be_a(Hash)
-    expect(subject.sample).to have_key(:name)
-    expect(subject.sample).to have_key(:customer_rating)
-    expect(subject.sample).to have_key(:distance)
-    expect(subject.sample).to have_key(:price)
-    expect(subject.sample).to have_key(:cuisine_id)
+    expect(subject).to all(be_a(Hash))
+    expect(subject).to all(have_key(:name))
+    expect(subject).to all(have_key(:customer_rating))
+    expect(subject).to all(have_key(:distance))
+    expect(subject).to all(have_key(:price))
+    expect(subject).to all(have_key(:cuisine_id))
   end
 
   it 'returns only restaurants with Delicious in its name' do
-    expect(subject.sample[:name]).to include(name)
+    names = subject.map { |restaurant| restaurant[:name].downcase }
+
+    expect(names).to all(include(name.downcase))
   end
 
   context 'when a partial and not case accurate name is passed' do
     let(:name) { 'IcIOU' }
 
     it 'returns only restaurants that contain IcIou in its name' do
-      expect(subject.sample[:name].downcase).to include(name.downcase)
+      names = subject.map { |restaurant| restaurant[:name].downcase }
+
+      expect(names).to all(include(name.downcase))
     end
   end
 
@@ -38,15 +42,19 @@ describe SearchRestaurantsService do
     let(:cuisine_id) { 8 }
 
     it 'returns only restaurants with the name and cuisine given' do
-      expect(subject.sample[:name].downcase).to include(name.downcase)
-      expect(subject.sample[:cuisine_id]).to eq(cuisine_id)
+      names = subject.map { |restaurant| restaurant[:name].downcase }
+      cuisine_ids = subject.map { |restaurant| restaurant[:cuisine_id] }
+
+      expect(cuisine_ids).to all(eq(cuisine_id))
+      expect(names).to all(include(name.downcase))
     end
 
     context 'when no name is passed' do
       let(:name) { nil }
 
       it 'returns only restaurants with the given cuisine' do
-        expect(subject.sample[:cuisine_id]).to eq(cuisine_id)
+        cuisine_ids = subject.map { |restaurant| restaurant[:cuisine_id] }
+        expect(cuisine_ids).to all(eq(cuisine_id))
       end
     end
   end
