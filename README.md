@@ -1,6 +1,6 @@
 # Match best restaurants
 
-This is an app made for getting arguments from a user and searching for the top 5 best restaurants that fit the description given. It is now only backend, so it doesn't have an UI. To run the project, simply open the rails console and refer to [running search page](https://github.com/Joranhezon/match-restaurants/blob/main/RUNNINGSEARCH.md). To learn more about the decisions behind the implementation of this project, please refer to [decisions page](https://github.com/Joranhezon/match-restaurants/blob/main/DECISIONS.md)
+This is an app made for getting arguments from a user and searching for the top 5 best restaurants that fit the description given. It is now only backend, so it doesn't have an UI. To learn more about the decisions behind the implementation of this project, please refer to [decisions page](https://github.com/Joranhezon/match-restaurants/blob/main/DECISIONS.md)
 
 ## Installation
 
@@ -17,6 +17,19 @@ After completing installation of both dependencies, run the following command:
 ```bundle install```
 
 And now you're ready to use the app!
+
+## How to run
+
+To run the project, make sure that rails is installed, then run the following command to open the rails console:
+
+```rails c```
+
+To search for restaurants use the following command:
+
+```GetRestaurantTemplateService.new.call(name: <name>, customer_rating: <customer_rating, distance: <distance>, price: <price>, cuisine: <cuisine>)```
+
+For some use cases, refer to [here](https://github.com/Joranhezon/match-restaurants/blob/main/RUNNINGSEARCH.md). Also, if you want to change the data in ```cuinies.scv``` and ```restaurants.csv```, they are locate in the ```docs``` folder.
+
 
 ## Running Tests
 

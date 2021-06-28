@@ -1,14 +1,4 @@
-# Running the Search
-
-To run the project, make sure that rails is installed, then run the following command to open the rails console:
-
-```rails c```
-
-To search for restaurants use the following command:
-
-```GetRestaurantTemplateService.new.call(name: <name>, customer_rating: <customer_rating, distance: <distance>, price: <price>, cuisine: <cuisine>)```
-
-## Some Use Cases
+# Some Use Cases
 
 ### Standard:
 
